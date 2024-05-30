@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdquo0rwueaw7"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_cmyrj"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_esl6l"]
+load_path = "res://.godot/imported/tile_0024.png-539e6133d1af00fbbfe367d611eb7b60.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lpjcm"]
+load_path = "res://.godot/imported/tile_0025.png-4902aa167b0dd3c38f9553b81944b345.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2watb"]
+load_path = "res://.godot/imported/tile_0026.png-fce20d85401c871687d8b8242be81222.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4rin5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_esl6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_lpjcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_2watb")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_lpjcm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bsff2"]
+radius = 17.0294
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_cmyrj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -6)
+scale = Vector2(3.007, 3.007)
+sprite_frames = SubResource("SpriteFrames_4rin5")
+autoplay = "default"
+frame_progress = 0.197606
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+shape = SubResource("CircleShape2D_bsff2")

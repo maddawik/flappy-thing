@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbtw7wpx20t4l"]
+
+[ext_resource type="PackedScene" uid="uid://cdquo0rwueaw7" path="res://scenes/player/player.tscn" id="1_ej44k"]
+[ext_resource type="Texture2D" uid="uid://bsklthmvwddj" path="res://assets/images/my_bg.png" id="1_i1pra"]
+[ext_resource type="Texture2D" uid="uid://csq88i8kdcgwk" path="res://assets/images/cloud.png" id="2_awe1x"]
+[ext_resource type="Script" path="res://scenes/score_label.gd" id="3_fy6c3"]
+[ext_resource type="PackedScene" uid="uid://gak536qpgovo" path="res://scenes/obstacle_spawner.tscn" id="3_g3gjq"]
+[ext_resource type="PackedScene" uid="uid://dhc20wwytf41k" path="res://scenes/killzone.tscn" id="4_vroaj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w403t"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="GameWorld" type="Node"]
+
+[node name="Parallax" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Parallax"]
+scroll_scale = Vector2(0.205, 0.205)
+scroll_offset = Vector2(1442, -11)
+repeat_size = Vector2(640, 2.08165e-12)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D"]
+position = Vector2(259, 180)
+texture = ExtResource("1_i1pra")
+region_rect = Rect2(0, 0, 95.4142, 72.1203)
+
+[node name="Parallax2D2" type="Parallax2D" parent="Parallax"]
+scroll_scale = Vector2(0.445, 0.445)
+scroll_offset = Vector2(1, 44)
+repeat_size = Vector2(500, 2.08165e-12)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D2"]
+position = Vector2(414, 96)
+texture = ExtResource("2_awe1x")
+flip_v = true
+region_rect = Rect2(233.624, 126.006, 54.5814, 15.3211)
+
+[node name="Player" parent="." instance=ExtResource("1_ej44k")]
+position = Vector2(203, 86)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2(100, 2.08165e-12)
+limit_top = 0
+limit_bottom = 360
+
+[node name="ObstacleSpawner" parent="Player" instance=ExtResource("3_g3gjq")]
+position = Vector2(555, 96)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="UILayer"]
+offset_left = 322.0
+offset_top = 13.0
+offset_right = 362.0
+offset_bottom = 36.0
+label_settings = SubResource("LabelSettings_w403t")
+script = ExtResource("3_fy6c3")
+
+[node name="Killzone" parent="." instance=ExtResource("4_vroaj")]
+position = Vector2(291, 427)
+
+[node name="Obstacles" type="Node" parent="."]
+unique_name_in_owner = true
