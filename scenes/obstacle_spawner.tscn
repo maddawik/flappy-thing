@@ -5,6 +5,7 @@
 [node name="ObstacleSpawner" type="Node2D"]
 position = Vector2(750, 180)
 script = ExtResource("1_v6me1")
+offset = 25
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

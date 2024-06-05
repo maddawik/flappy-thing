@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://blorrwj4m1bl5"]
+
+[ext_resource type="Script" path="res://global/game_manager.gd" id="1_2hif7"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_2hif7")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="player_died" from="." to="." method="_on_player_died"]
+[connection signal="timeout" from="DeathTimer" to="." method="reset_game"]

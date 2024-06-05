@@ -32,15 +32,15 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bsff2"]
-radius = 17.0294
+radius = 5.0
 
 [node name="Player" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_cmyrj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
 position = Vector2(0, -6)
-scale = Vector2(3.007, 3.007)
 sprite_frames = SubResource("SpriteFrames_4rin5")
 autoplay = "default"
 frame_progress = 0.197606
@@ -48,4 +48,5 @@ flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
+position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_bsff2")

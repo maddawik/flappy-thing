@@ -1,44 +1,40 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpu4tdyhnu4pk"]
 
-[ext_resource type="Texture2D" uid="uid://bvbocy8oq7w13" path="res://assets/images/pipesvg.svg" id="1_7yrds"]
 [ext_resource type="Script" path="res://scenes/obstacle/obstacle.gd" id="1_a0jcc"]
+[ext_resource type="Texture2D" uid="uid://woc57odtxou5" path="res://assets/images/obstacle.png" id="2_m5igd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibpoq"]
-size = Vector2(37.5, 213)
+size = Vector2(12, 84.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjr87"]
-size = Vector2(0, 126)
+size = Vector2(2, 70)
 
 [node name="Obstacle" type="Node2D"]
 script = ExtResource("1_a0jcc")
 
 [node name="Top" type="Node2D" parent="."]
-position = Vector2(2.08165e-12, -60)
+position = Vector2(0, -77)
 
 [node name="Sprite2D" type="Sprite2D" parent="Top"]
-position = Vector2(0, -108)
-scale = Vector2(0.150082, 0.468497)
-texture = ExtResource("1_7yrds")
+texture = ExtResource("2_m5igd")
 flip_v = true
 
 [node name="Area2D" type="Area2D" parent="Top"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top/Area2D"]
-position = Vector2(-0.25, -109)
+position = Vector2(0, -0.25)
 shape = SubResource("RectangleShape2D_ibpoq")
 
 [node name="Bottom" type="Node2D" parent="."]
-position = Vector2(0, 276)
+position = Vector2(0, 77)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bottom"]
-position = Vector2(0, -108)
-scale = Vector2(0.150082, 0.468497)
-texture = ExtResource("1_7yrds")
+texture = ExtResource("2_m5igd")
 
 [node name="Area2D" type="Area2D" parent="Bottom"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom/Area2D"]
-position = Vector2(-0.5, -106.5)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_ibpoq")
 
 [node name="ScoreZone" type="Node2D" parent="."]
@@ -46,12 +42,9 @@ shape = SubResource("RectangleShape2D_ibpoq")
 [node name="Area2D" type="Area2D" parent="ScoreZone"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreZone/Area2D"]
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_gjr87")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.122
 
 [connection signal="body_entered" from="Top/Area2D" to="." method="_on_hit_obstacle"]
 [connection signal="body_entered" from="Bottom/Area2D" to="." method="_on_hit_obstacle"]
 [connection signal="body_entered" from="ScoreZone/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
