@@ -4,19 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://di3wj5froaehd" path="res://assets/images/background.png" id="1_pqyqf"]
 [ext_resource type="Texture2D" uid="uid://cvgws2gvnb8ri" path="res://assets/images/tilemap_packed.png" id="2_yftch"]
 [ext_resource type="Script" path="res://scripts/game_ui.gd" id="3_fy6c3"]
-[ext_resource type="PackedScene" uid="uid://gak536qpgovo" path="res://scenes/obstacle_spawner.tscn" id="3_g3gjq"]
+[ext_resource type="PackedScene" uid="uid://gak536qpgovo" path="res://scenes/obstacle/obstacle_spawner.tscn" id="3_g3gjq"]
 [ext_resource type="PackedScene" uid="uid://dhc20wwytf41k" path="res://scenes/killzone.tscn" id="4_vroaj"]
-[ext_resource type="FontFile" uid="uid://c2r7044vk61q6" path="res://assets/fonts/ARCADECLASSIC.TTF" id="6_k4q2s"]
-
-[sub_resource type="Theme" id="Theme_0ce7x"]
-default_font = ExtResource("6_k4q2s")
-default_font_size = 30
-Label/fonts/font = ExtResource("6_k4q2s")
+[ext_resource type="Theme" uid="uid://ce0u0qmkm57cp" path="res://assets/theme.tres" id="5_rwrtd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qev75"]
 font_size = 50
 font_color = Color(0, 0, 0, 1)
 outline_size = 5
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1fjqr"]
 
 [node name="GameWorld" type="Node"]
 
@@ -38,6 +35,7 @@ scroll_offset = Vector2(-26, -66)
 repeat_size = Vector2(600, 2.08165e-12)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D2"]
+modulate = Color(1, 1, 1, 0.47451)
 position = Vector2(2.08165e-12, 129)
 texture = ExtResource("2_yftch")
 flip_v = true
@@ -52,6 +50,7 @@ offset = Vector2(100, 2.08165e-12)
 zoom = Vector2(2, 2)
 limit_top = 0
 limit_bottom = 180
+limit_smoothed = true
 
 [node name="ObstacleSpawner" parent="Player/Camera2D" instance=ExtResource("3_g3gjq")]
 position = Vector2(301, -1)
@@ -69,29 +68,150 @@ offset_right = 20.0
 offset_bottom = 33.0
 grow_horizontal = 2
 scale = Vector2(0.553325, 0.553325)
-theme = SubResource("Theme_0ce7x")
+theme = ExtResource("5_rwrtd")
 text = "
 "
 label_settings = SubResource("LabelSettings_qev75")
 
-[node name="HighScore" type="Label" parent="UILayer"]
+[node name="Hint" type="Control" parent="UILayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UILayer/Hint"]
+modulate = Color(0.233925, 0.233925, 0.233925, 0.266667)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UILayer/Hint"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 259.0
-offset_top = 10.0
-offset_right = 343.0
-offset_bottom = 61.0
+offset_left = -116.0
+offset_top = 103.0
+offset_right = 116.0
+offset_bottom = 134.0
 grow_horizontal = 2
-scale = Vector2(0.553325, 0.553325)
-theme = SubResource("Theme_0ce7x")
-text = "
-"
-label_settings = SubResource("LabelSettings_qev75")
+theme = ExtResource("5_rwrtd")
+text = "Click   to   flap!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOver" type="Control" parent="UILayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_rwrtd")
+
+[node name="ColorRect" type="ColorRect" parent="UILayer/GameOver"]
+modulate = Color(1, 1, 1, 0.458824)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -105.0
+offset_right = 184.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="UILayer/GameOver/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("5_rwrtd")
+theme_override_font_sizes/font_size = 50
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreVBoxContainer" type="VBoxContainer" parent="UILayer/GameOver/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScoreHBoxContainer" type="HBoxContainer" parent="UILayer/GameOver/VBoxContainer/ScoreVBoxContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="UILayer/GameOver/VBoxContainer/ScoreVBoxContainer/ScoreHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Score"
 horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ScoreValueLabel" type="Label" parent="UILayer/GameOver/VBoxContainer/ScoreVBoxContainer/ScoreHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 1
+
+[node name="HighScoreHBoxContainer" type="HBoxContainer" parent="UILayer/GameOver/VBoxContainer/ScoreVBoxContainer"]
+layout_mode = 2
+
+[node name="HighScoreLabel" type="Label" parent="UILayer/GameOver/VBoxContainer/ScoreVBoxContainer/HighScoreHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "High   Score"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighScoreValueLabel" type="RichTextLabel" parent="UILayer/GameOver/VBoxContainer/ScoreVBoxContainer/HighScoreHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[center]abc[/center]"
+
+[node name="ButtonHBoxContainer" type="HBoxContainer" parent="UILayer/GameOver/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="UILayer/GameOver/VBoxContainer/ButtonHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="UILayer/GameOver/VBoxContainer/ButtonHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quit"
 
 [node name="Obstacles" type="Node" parent="."]
 unique_name_in_owner = true
 
 [node name="Killzone" parent="." instance=ExtResource("4_vroaj")]
 position = Vector2(139, 198)
+collision_mask = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visibility_layer = 2
+position = Vector2(139, 251)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_1fjqr")

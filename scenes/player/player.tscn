@@ -1,52 +1,78 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdquo0rwueaw7"]
+[gd_scene load_steps=12 format=3 uid="uid://cdquo0rwueaw7"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_cmyrj"]
+[ext_resource type="Texture2D" uid="uid://cjpv5xgrtw67q" path="res://assets/images/tilemap-characters_packed.png" id="2_q3pj8"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_rcrof"]
+[ext_resource type="Script" path="res://scenes/player/player_idle.gd" id="3_ietxl"]
+[ext_resource type="Script" path="res://scenes/player/player_fly.gd" id="4_3gw02"]
+[ext_resource type="Script" path="res://scenes/player/player_dead.gd" id="5_lmf8b"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_esl6l"]
-load_path = "res://.godot/imported/tile_0024.png-539e6133d1af00fbbfe367d611eb7b60.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_528kf"]
+atlas = ExtResource("2_q3pj8")
+region = Rect2(144, 48, 24, 24)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lpjcm"]
-load_path = "res://.godot/imported/tile_0025.png-4902aa167b0dd3c38f9553b81944b345.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_ets53"]
+atlas = ExtResource("2_q3pj8")
+region = Rect2(168, 48, 24, 24)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2watb"]
-load_path = "res://.godot/imported/tile_0026.png-fce20d85401c871687d8b8242be81222.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqml7"]
+atlas = ExtResource("2_q3pj8")
+region = Rect2(192, 48, 24, 24)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4rin5"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ase8p"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_esl6l")
+"texture": SubResource("AtlasTexture_528kf")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_lpjcm")
+"texture": SubResource("AtlasTexture_ets53")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_2watb")
+"texture": SubResource("AtlasTexture_aqml7")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_lpjcm")
+"texture": SubResource("AtlasTexture_ets53")
 }],
 "loop": true,
 "name": &"default",
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bsff2"]
-radius = 5.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04v6k"]
+size = Vector2(10, 9)
 
 [node name="Player" type="CharacterBody2D"]
-motion_mode = 1
+collision_layer = 2
 script = ExtResource("1_cmyrj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 z_index = 1
 position = Vector2(0, -6)
-sprite_frames = SubResource("SpriteFrames_4rin5")
-autoplay = "default"
-frame_progress = 0.197606
+sprite_frames = SubResource("SpriteFrames_ase8p")
+frame = 2
+frame_progress = 0.588316
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 z_index = 1
-position = Vector2(0, -3)
-shape = SubResource("CircleShape2D_bsff2")
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_04v6k")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_rcrof")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("3_ietxl")
+player = NodePath("../..")
+
+[node name="Fly" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("4_3gw02")
+player = NodePath("../..")
+
+[node name="Dead" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("5_lmf8b")
+player = NodePath("../..")

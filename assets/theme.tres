@@ -1,0 +1,53 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://ce0u0qmkm57cp"]
+
+[ext_resource type="FontFile" uid="uid://c2r7044vk61q6" path="res://assets/fonts/ARCADECLASSIC.TTF" id="1_44wwc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmvr6"]
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 5
+border_color = Color(0.164706, 0.521569, 0.733333, 0.980392)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fxn7"]
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 5
+border_color = Color(0.164706, 0.521569, 0.733333, 0.980392)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eo0dk"]
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 5
+border_color = Color(0.164706, 0.521569, 0.733333, 0.980392)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 2
+
+[resource]
+default_font = ExtResource("1_44wwc")
+default_font_size = 30
+Button/colors/font_color = Color(0.164706, 0.521569, 0.733333, 0.980392)
+Button/colors/font_focus_color = Color(0.346713, 0.696479, 0.923973, 0.980392)
+Button/colors/font_hover_color = Color(0.346713, 0.696479, 0.923973, 0.980392)
+Button/colors/font_hover_pressed_color = Color(0.346713, 0.696479, 0.923973, 0.980392)
+Button/colors/font_pressed_color = Color(0.396078, 0.396078, 0.701961, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_rmvr6")
+Button/styles/normal = SubResource("StyleBoxFlat_2fxn7")
+Button/styles/pressed = SubResource("StyleBoxFlat_eo0dk")
+Label/colors/font_shadow_color = Color(0.164706, 0.521569, 0.733333, 1)
+Label/constants/shadow_offset_x = 2
+Label/constants/shadow_offset_y = 2
+Label/font_sizes/font_size = 30
+Label/fonts/font = ExtResource("1_44wwc")
+RichTextLabel/colors/font_shadow_color = Color(0.164706, 0.521569, 0.733333, 0.980392)
+RichTextLabel/constants/shadow_offset_x = 2
+RichTextLabel/constants/shadow_offset_y = 2
