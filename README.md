@@ -24,3 +24,11 @@ Game 1 of the [20 game challenge](https://20_games_challenge.gitlab.io/challenge
       alongside the current score.
 - [x] Add some background art! Try layering the background and scrolling at a
       different rate to the foreground obstacles. This is called Parallax scrolling.
+
+## Full-split goals
+
+- [ ] Add a settings menu with options to mix sound levels, view credits, and
+      change controls
+- [ ] Make it so that the difficulty increases over time. Moving faster, pipes are
+      closer horizontally/vertically, other obstacles?
+- [ ] Character customization feature! Change Kenneys color? maybe more? 🤔
