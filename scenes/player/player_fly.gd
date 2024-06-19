@@ -7,12 +7,14 @@ extends State
 @export var player: CharacterBody2D
 
 @onready var player_sprite: AnimatedSprite2D = %PlayerSprite
+@onready var flap_sound: AudioStreamPlayer = %FlapSound
 
 func _ready() -> void:
 	Events.player_died.connect(_on_player_died)
 
 func enter():
 	player_sprite.speed_scale = flap_speed
+	flap_sound.play()
 	player.velocity.y = player.jump_velocity
 
 
@@ -28,6 +30,7 @@ func physics_update(delta: float):
 
 	# Handle jump.
 	if Input.is_action_just_pressed("flap"):
+		flap_sound.play()
 		player.velocity.y = player.jump_velocity
 
 func _on_player_died() -> void:

@@ -12,5 +12,6 @@ func _on_area_2d_body_entered(body):
 
 func _on_hit_obstacle(body):
 	if body is Player and score_zone:
+		body.impact_sound.play()
 		score_zone.queue_free()
 		Events.player_died.emit()

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://by1l8csutryth"]
+
+[ext_resource type="AudioStream" uid="uid://g03iac5bu0r3" path="res://assets/sounds/Retro Beat.ogg" id="1_igpl0"]
+[ext_resource type="Script" path="res://global/audio_manager.gd" id="1_sm4p5"]
+[ext_resource type="AudioStream" uid="uid://dgh77s72chv8i" path="res://assets/sounds/powerUp6.ogg" id="3_xae43"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_sm4p5")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_igpl0")
+volume_db = -7.723
+autoplay = true
+parameters/looping = true
+
+[node name="PointSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xae43")
+volume_db = -12.372
+pitch_scale = 1.2

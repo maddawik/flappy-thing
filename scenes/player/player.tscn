@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cdquo0rwueaw7"]
+[gd_scene load_steps=15 format=3 uid="uid://cdquo0rwueaw7"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_cmyrj"]
 [ext_resource type="Texture2D" uid="uid://cjpv5xgrtw67q" path="res://assets/images/tilemap-characters_packed.png" id="2_q3pj8"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_rcrof"]
+[ext_resource type="AudioStream" uid="uid://dtmxuowxkn5y" path="res://assets/sounds/woosh1.ogg" id="3_5oj2f"]
 [ext_resource type="Script" path="res://scenes/player/player_idle.gd" id="3_ietxl"]
 [ext_resource type="Script" path="res://scenes/player/player_fly.gd" id="4_3gw02"]
+[ext_resource type="AudioStream" uid="uid://bel16jhv1y0l0" path="res://assets/sounds/impactMetal_heavy_000.ogg" id="4_j38e5"]
+[ext_resource type="Script" path="res://scenes/player/player_title.gd" id="4_vlvw2"]
 [ext_resource type="Script" path="res://scenes/player/player_dead.gd" id="5_lmf8b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_528kf"]
@@ -61,9 +64,33 @@ z_index = 1
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_04v6k")
 
+[node name="Sounds" type="Node" parent="."]
+
+[node name="FlapSound" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("3_5oj2f")
+volume_db = -11.326
+pitch_scale = 0.72
+
+[node name="ImpactSound" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("4_j38e5")
+volume_db = 2.574
+pitch_scale = 0.57
+
+[node name="FallSound" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("3_5oj2f")
+volume_db = -10.825
+pitch_scale = 0.51
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_rcrof")
-initial_state = NodePath("Idle")
+initial_state = NodePath("Title")
+
+[node name="Title" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("4_vlvw2")
+player = NodePath("../..")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("3_ietxl")

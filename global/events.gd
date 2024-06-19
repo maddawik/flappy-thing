@@ -6,3 +6,4 @@ signal game_started
 signal player_died
 signal show_hint
 signal hide_hint
+signal title_exit

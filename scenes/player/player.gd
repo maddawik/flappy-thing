@@ -8,6 +8,9 @@ extends CharacterBody2D
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var gravity = 600
 
+@onready var impact_sound: AudioStreamPlayer = %ImpactSound
+@onready var fall_sound: AudioStreamPlayer = %FallSound
+@onready var state_machine: Node = $StateMachine
 
 func _physics_process(_delta: float):
 	# Invisible ceiling

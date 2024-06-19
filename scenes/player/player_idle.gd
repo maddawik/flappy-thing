@@ -2,7 +2,7 @@ class_name PlayerIdle
 
 extends State
 
-@export var flap_speed = 0.4
+@export var flap_speed = 0.5
 @export var player: CharacterBody2D
 
 var hint_timer: Timer
@@ -17,7 +17,7 @@ func enter():
 	add_child(hint_timer)
 	hint_timer.one_shot = true
 	hint_timer.timeout.connect(_on_hint_timer_timeout)
-	hint_timer.start(2)
+	hint_timer.start(5)
 
 
 func _on_hint_timer_timeout() -> void:

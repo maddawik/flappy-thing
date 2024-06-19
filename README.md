@@ -17,7 +17,7 @@ Game 1 of the [20 game challenge](https://20_games_challenge.gitlab.io/challenge
 
 ## Stretch goals
 
-- [ ] Add some sounds that will play each time the player gains a point, and
+- [x] Add some sounds that will play each time the player gains a point, and
       when the player loses.
 - [x] Add a basic game-over screen to display the player’s score.
 - [x] Track the high-score between play sessions and display the high score

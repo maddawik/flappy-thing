@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbtw7wpx20t4l"]
+[gd_scene load_steps=15 format=3 uid="uid://dbtw7wpx20t4l"]
 
 [ext_resource type="PackedScene" uid="uid://cdquo0rwueaw7" path="res://scenes/player/player.tscn" id="1_ej44k"]
 [ext_resource type="Texture2D" uid="uid://di3wj5froaehd" path="res://assets/images/background.png" id="1_pqyqf"]
@@ -7,13 +7,187 @@
 [ext_resource type="PackedScene" uid="uid://gak536qpgovo" path="res://scenes/obstacle/obstacle_spawner.tscn" id="3_g3gjq"]
 [ext_resource type="PackedScene" uid="uid://dhc20wwytf41k" path="res://scenes/killzone.tscn" id="4_vroaj"]
 [ext_resource type="Theme" uid="uid://ce0u0qmkm57cp" path="res://assets/theme.tres" id="5_rwrtd"]
+[ext_resource type="Script" path="res://scripts/scene_transitions.gd" id="8_egs5c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qev75"]
 font_size = 50
 font_color = Color(0, 0, 0, 1)
-outline_size = 5
+outline_size = 8
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1fjqr"]
+
+[sub_resource type="Animation" id="Animation_smap6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UILayer/WhiteScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UILayer/WhiteScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UILayer/TitleVBoxContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UILayer/TitleVBoxContainer/Suggestion:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1lssl"]
+resource_name = "title_screen"
+length = 3.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UILayer/WhiteScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UILayer/WhiteScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UILayer/TitleVBoxContainer/Title:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.0989, 2.1009),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UILayer/TitleVBoxContainer/Suggestion:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.0989, 2.5308, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UILayer/TitleVBoxContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.06757),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_saej1"]
+resource_name = "title_screen_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UILayer/TitleVBoxContainer/Title:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0332999, 0.8325),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UILayer/TitleVBoxContainer/Suggestion:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0332999, 0.8325),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UILayer/WhiteScreen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UILayer/TitleVBoxContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mmgk0"]
+_data = {
+"RESET": SubResource("Animation_smap6"),
+"title_screen_in": SubResource("Animation_1lssl"),
+"title_screen_out": SubResource("Animation_saej1")
+}
 
 [node name="GameWorld" type="Node"]
 
@@ -194,13 +368,60 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 text = "Play"
 
 [node name="QuitButton" type="Button" parent="UILayer/GameOver/VBoxContainer/ButtonHBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 text = "Quit"
+
+[node name="TitleVBoxContainer" type="VBoxContainer" parent="UILayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -87.0
+offset_right = 232.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_rwrtd")
+
+[node name="Title" type="RichTextLabel" parent="UILayer/TitleVBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(4.90699e-06, 0.813499, 0.734014, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.447059, 0.733333, 1)
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "[center][wave]Flap   Kenney   Flap![/wave][/center]"
+fit_content = true
+
+[node name="Suggestion" type="RichTextLabel" parent="UILayer/TitleVBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(4.90699e-06, 0.813499, 0.734014, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.447059, 0.733333, 1)
+bbcode_enabled = true
+text = "[center][wave]Click   to   start[/wave][/center]"
+
+[node name="WhiteScreen" type="ColorRect" parent="UILayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Obstacles" type="Node" parent="."]
 unique_name_in_owner = true
@@ -209,9 +430,15 @@ unique_name_in_owner = true
 position = Vector2(139, 198)
 collision_mask = 2
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="FloorStaticBody2D" type="StaticBody2D" parent="."]
 visibility_layer = 2
 position = Vector2(139, 251)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="FloorCollisionShape2D" type="CollisionShape2D" parent="FloorStaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_1fjqr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mmgk0")
+}
+script = ExtResource("8_egs5c")

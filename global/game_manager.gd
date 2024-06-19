@@ -1,7 +1,8 @@
 extends Node
 
-var player_score: int = 0
-var high_score: int = 0
+var player_score := 0
+var high_score := 0
+var skip_intro := false
 
 @onready var death_timer: Timer = $DeathTimer
 
@@ -12,6 +13,7 @@ func _ready() -> void:
 
 func add_point() -> void:
 	player_score += 1
+	AudioManager.point_sound.play()
 	Events.score_update.emit(player_score)
 
 

@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://global/game_manager.tscn"
 Events="*res://global/events.gd"
-AudioPlayer="*res://global/audio_player.tscn"
+AudioManager="*res://global/audio_manager.tscn"
 
 [display]
 
