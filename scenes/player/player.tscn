@@ -52,7 +52,6 @@ script = ExtResource("1_cmyrj")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_ase8p")
 frame = 2
 frame_progress = 0.588316
@@ -61,7 +60,6 @@ flip_h = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_04v6k")
 
 [node name="Sounds" type="Node" parent="."]

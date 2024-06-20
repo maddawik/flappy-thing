@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpu4tdyhnu4pk"]
+[gd_scene load_steps=8 format=3 uid="uid://dpu4tdyhnu4pk"]
 
 [ext_resource type="Script" path="res://scenes/obstacle/obstacle.gd" id="1_a0jcc"]
 [ext_resource type="Texture2D" uid="uid://woc57odtxou5" path="res://assets/images/obstacle.png" id="2_m5igd"]
@@ -6,28 +6,30 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s64e2"]
 size = Vector2(14, 86)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_km4rw"]
-radius = 6.0
-height = 84.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nsmo"]
+size = Vector2(10, 84)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvry6"]
 size = Vector2(14, 86)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrr1m"]
+size = Vector2(10, 84)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjr87"]
-size = Vector2(1.79873, 74.6474)
+size = Vector2(1.79873, 80)
 
 [node name="Obstacle" type="Node2D"]
 script = ExtResource("1_a0jcc")
 
 [node name="Top" type="Node2D" parent="."]
-position = Vector2(0, -84)
+position = Vector2(2.08165e-12, -83)
 
 [node name="Sprite2D" type="Sprite2D" parent="Top"]
 texture = ExtResource("2_m5igd")
 flip_v = true
 
 [node name="Area2D" type="Area2D" parent="Top"]
-collision_mask = 2
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top/Area2D"]
 shape = SubResource("RectangleShape2D_s64e2")
@@ -36,7 +38,8 @@ shape = SubResource("RectangleShape2D_s64e2")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top/StaticBody2D"]
-shape = SubResource("CapsuleShape2D_km4rw")
+position = Vector2(-2.08165e-12, -1)
+shape = SubResource("RectangleShape2D_8nsmo")
 
 [node name="Bottom" type="Node2D" parent="."]
 position = Vector2(0, 83)
@@ -54,16 +57,15 @@ shape = SubResource("RectangleShape2D_xvry6")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom/StaticBody2D"]
-shape = SubResource("CapsuleShape2D_km4rw")
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_vrr1m")
 
 [node name="ScoreZone" type="Node2D" parent="."]
-scale = Vector2(1.11189, 1.11189)
 
 [node name="Area2D" type="Area2D" parent="ScoreZone"]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreZone/Area2D"]
-position = Vector2(0.899366, -0.449683)
 shape = SubResource("RectangleShape2D_gjr87")
 
 [connection signal="body_entered" from="Top/Area2D" to="." method="_on_hit_obstacle"]

@@ -6,6 +6,7 @@ var skip_intro := false
 
 @onready var death_timer: Timer = $DeathTimer
 
+@export var player: Player
 
 func _ready() -> void:
 	Events.player_died.connect(_on_player_died)

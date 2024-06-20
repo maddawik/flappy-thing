@@ -217,7 +217,8 @@ region_enabled = true
 region_rect = Rect2(233.624, 126.006, 54.5814, 15.3211)
 
 [node name="Player" parent="." instance=ExtResource("1_ej44k")]
-position = Vector2(29, 100)
+unique_name_in_owner = true
+position = Vector2(29, 90)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(100, 2.08165e-12)
@@ -227,7 +228,8 @@ limit_bottom = 180
 limit_smoothed = true
 
 [node name="ObstacleSpawner" parent="Player/Camera2D" instance=ExtResource("3_g3gjq")]
-position = Vector2(301, -1)
+position = Vector2(300, 2.08165e-12)
+offset = 30
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 script = ExtResource("3_fy6c3")
