@@ -2,6 +2,10 @@
 
 Game 1 of the [20 game challenge](https://20_games_challenge.gitlab.io/challenge/)
 
+![title screen](./screenshot.png)
+
+[Play it here](https://maddawik.itch.io/flap-kenney)
+
 ## Main goals
 
 - [x] Create a game world with a floor.
@@ -31,4 +35,4 @@ Game 1 of the [20 game challenge](https://20_games_challenge.gitlab.io/challenge
       change controls
 - [ ] Make it so that the difficulty increases over time. Moving faster, pipes are
       closer horizontally/vertically, other obstacles?
-- [ ] Character customization feature! Change Kenneys color? maybe more? 🤔
+- [ ] Character customization feature! Change Kenny's color? Maybe more? 🤔
